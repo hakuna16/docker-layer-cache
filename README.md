@@ -1,7 +1,6 @@
-Docker file content for the forst time
+Docker file content for the first time
 
-````
-
+````docker
 FROM node:latest
 WORKDIR /application
 ADD . .
@@ -13,6 +12,7 @@ Run command docker build -t docker-cache-layer .
 
 - Firt time fresh build when you dont have the Image in the local
 
+````logs
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 [+] Building 0.0s (1/2)                                                                                                                                                                                     
  => [internal] load build definition from Dockerfile                                                                                                                                                   0.0s
@@ -57,12 +57,12 @@ rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
  => => exporting layers                                                                                                                                                                                0.2s 
  => => writing image sha256:de187a05bf7e148ed2f1a227f20e41eb9eb6ba7be4dee08d69a60eee5bd5f6df                                                                                                           0.0s 
  => => naming to docker.io/library/docker-cache-layer 
+````
+
+- Once build again without doing any change, docker will not pull the image form the source, See the logs
 
 
-- Once build again without doing any change, docker will not pull the image form the source
-
-See the logs
-
+````log
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 [+] Building 4.0s (9/9) FINISHED                                                                                                                                                                            
  => [internal] load build definition from Dockerfile                                                                                                                                                   0.0s
@@ -79,10 +79,13 @@ rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
  => exporting to image                                                                                                                                                                                 0.2s 
  => => exporting layers                                                                                                                                                                                0.2s 
  => => writing image sha256:64043630a67d57c4b00f9e03d0c5c2b460d74efd822dc6c8518e29fff0e99348                                                                                                           0.0s 
- => => naming to docker.io/library/docker-cache-layer    
+ => => naming to docker.io/library/docker-cache-layer  
+ 
+ ````
 
-- Change the response of the code to diffrent or add something new in the code.
+- Change the response of the code to diffrent or add something new in the code, then also the same thing
 
+````log
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 [+] Building 5.1s (9/9) FINISHED                                                                                                                                                                            
  => [internal] load build definition from Dockerfile                                                                                                                                                   0.0s
@@ -100,11 +103,11 @@ rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
  => => exporting layers                                                                                                                                                                                0.2s
  => => writing image sha256:be7ee212ade4b531338117f259cd72e1b3ed724baac4a6a772acc74899f59df3                                                                                                           0.0s 
  => => naming to docker.io/library/docker-cache-layer           
-
+````
 
  - Now if we inteligently modify the docker file to use cache and layering then the file will somethig diffrent as
 
- ````
+ ````docker
  WORKDIR /application
 ADD package.json .
 ADD yarn.lock .
@@ -115,12 +118,11 @@ CMD node index.js
 ````
 
 What we did here is as we know that we only going to change the code, which is minimal. 
-So docker will use the cache , which is already created at every command we add.
-
-So Check the logs as:
+So docker will use the cache , which is already created at every command we add. So Check the logs as:
 
 1. First time after changing the code and the docker.
 
+````log
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 [+] Building 6.8s (14/14) FINISHED                                                                                                                                                                          
  => [internal] load build definition from Dockerfile                                                                                                                                                   0.0s
@@ -143,9 +145,9 @@ rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
  => => exporting layers                                                                                                                                                                                0.2s
  => => writing image sha256:ccaa71c564b422d6d5746de2d116e718e0fc2a2e52e991f5277dd4c4b236ad21                                                                                                           0.0s 
  => => naming to docker.io/library/docker-cache-layer      
+````
 
-
-
+````log
 2. Next time building the same image by changing the code and adding more to the response.
 
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
@@ -166,6 +168,7 @@ rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
  => exporting to image                                                                                                                                                                                 0.1s
  => => exporting layers                                                                                                                                                                                0.1s
  => => writing image sha256:c2ab65b28d15c77ec25c0a55b2c5097e8020697188eed250563c1a4a9b654ad0                                                                                                           0.0s
- => => naming to docker.io/library/docker-cache-layer                                                                                                               
+ => => naming to docker.io/library/docker-cache-layer   
+ ````
  If you notice properl you will see the logs are cached.
  This is how docekr uses layer.                                  
