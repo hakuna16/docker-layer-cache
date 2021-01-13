@@ -1,14 +1,13 @@
 # Without using layed cache
 
-# FROM node:latest
-# WORKDIR /application
-# ADD . .
-# RUN yarn install
-# CMD node index.js
+FROM node:latest
+WORKDIR /application
+ADD . .
+RUN yarn install
+CMD node index.js
 
 
 # With layed cache
-
 
 FROM node:latest
 WORKDIR /application

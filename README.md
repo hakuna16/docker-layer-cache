@@ -111,7 +111,8 @@ rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
  - Now if we inteligently modify the docker file to use cache and layering then the file will somethig diffrent as
 
  ````docker
- WORKDIR /application
+FROM node:latest
+WORKDIR /application
 ADD package.json .
 ADD yarn.lock .
 ADD . .
