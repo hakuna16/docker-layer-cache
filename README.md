@@ -12,12 +12,7 @@ Run command docker build -t docker-cache-layer .
 
 - Firt time fresh build when you dont have the Image in the local
 
-````logs
-rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
-[+] Building 0.0s (1/2)                                                                                                                                                                                     
- => [internal] load build definition from Dockerfile                                                                                                                                                   0.0s
- => => transferring dockerfile: 2B                                                                                                                                                                     0.0s
-failed to solve with frontend dockerfile.v0: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount641594383/Dockerfile: no such file or directory
+````bash
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 [+] Building 55.7s (9/9) FINISHED                                                                                                                                                                           
  => [internal] load build definition from Dockerfile                                                                                                                                                   0.0s
@@ -62,7 +57,7 @@ rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 - Once build again without doing any change, docker will not pull the image form the source, See the logs
 
 
-````log
+````bash
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 [+] Building 4.0s (9/9) FINISHED                                                                                                                                                                            
  => [internal] load build definition from Dockerfile                                                                                                                                                   0.0s
@@ -85,7 +80,7 @@ rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 
 - Change the response of the code to diffrent or add something new in the code, then also the same thing
 
-````log
+````bash
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 [+] Building 5.1s (9/9) FINISHED                                                                                                                                                                            
  => [internal] load build definition from Dockerfile                                                                                                                                                   0.0s
@@ -122,7 +117,7 @@ So docker will use the cache , which is already created at every command we add.
 
 1. First time after changing the code and the docker.
 
-````log
+````bash
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 [+] Building 6.8s (14/14) FINISHED                                                                                                                                                                          
  => [internal] load build definition from Dockerfile                                                                                                                                                   0.0s
@@ -147,9 +142,10 @@ rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
  => => naming to docker.io/library/docker-cache-layer      
 ````
 
-````log
+
 2. Next time building the same image by changing the code and adding more to the response.
 
+````bash
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 [+] Building 1.7s (11/11) FINISHED                                                                                                                                                                          
  => [internal] load build definition from Dockerfile                                                                                                                                                   0.0s
