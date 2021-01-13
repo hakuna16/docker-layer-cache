@@ -12,6 +12,10 @@ Run command docker build -t docker-cache-layer .
 
 - Firt time fresh build when you dont have the Image in the local
 
+![first_time_when_no_image](https://github.com/hakuna16/docker-layer-cache/blob/master/images/first_time_when_no_image.png)
+
+
+
 ````bash
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 [+] Building 55.7s (9/9) FINISHED                                                                                                                                                                           
@@ -56,6 +60,8 @@ rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 
 - Once build again without doing any change, docker will not pull the image form the source, See the logs
 
+![first_time_when_no_image](https://github.com/hakuna16/docker-layer-cache/blob/master/images/Without_changing_the_Docker_file.png)
+
 
 ````bash
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
@@ -78,7 +84,9 @@ rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
  
  ````
 
-- Change the response of the code to diffrent or add something new in the code, then also the same thing
+- Change the code to diffrent or add something new in the code, then also the same thing
+
+![first_time_when_no_image](https://github.com/hakuna16/docker-layer-cache/blob/master/images/Without_changing_the_Docker_file.png)
 
 ````bash
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
@@ -117,6 +125,8 @@ So docker will use the cache , which is already created at every command we add.
 
 1. First time after changing the code and the docker.
 
+![first_time_when_no_image](https://github.com/hakuna16/docker-layer-cache/blob/master/images/Without_changing_the_Docker_file.png)
+
 ````bash
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 [+] Building 6.8s (14/14) FINISHED                                                                                                                                                                          
@@ -144,6 +154,8 @@ rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
 
 
 2. Next time building the same image by changing the code and adding more to the response.
+
+![first_time_when_no_image](https://github.com/hakuna16/docker-layer-cache/blob/master/images/using%20of%20cache%20with%20layer.png)
 
 ````bash
 rituj@INMLPB4JG8WP docker-layer-cache % docker build -t docker-cache-layer .
